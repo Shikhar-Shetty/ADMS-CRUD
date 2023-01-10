@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function AddInsurance(props) {
+export default function AddSoil(props) {
   const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
+  const [moisture, setMoisture] = useState("");
   const [type, setType] = useState("");
 
   useEffect(() => {
@@ -13,26 +13,24 @@ export default function AddInsurance(props) {
   const loadUpdate = () => {
     if (props.update != {}) {
       setName(props.update.name);
-      setDesc(props.update.description);
-      setType(props.update.insuranceType);
+      setMoisture(props.update.moisture);
+      setType(props.update.type);
     }
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("here");
     if (props.update.id == null) {
-      console.log("here");
-      await axios.post("http://localhost:5000/insurance", {
+      await axios.post("http://localhost:5000/soil", {
         name: name,
-        description: desc,
-        insuranceType: type,
+        moisture: moisture,
+        type: type,
       });
     } else {
-      await axios.patch(`http://localhost:5000/insurance/${props.update.id}`, {
+      await axios.patch(`http://localhost:5000/soil/${props.update.id}`, {
         name: name,
-        description: desc,
-        insuranceType: type,
+        moisture: moisture,
+        type: type,
       });
     }
     props.setUpdate({});
@@ -43,7 +41,7 @@ export default function AddInsurance(props) {
 
   const resetHandler = () => {
     setName("");
-    setDesc("");
+    setMoisture("");
     setType("");
   };
 
@@ -51,23 +49,23 @@ export default function AddInsurance(props) {
     <form className="w-1/2 flex" onSubmit={(e) => submitHandler(e)}>
       <div className="bg-blue-900 flex flex-col my-auto w-full rounded p-2 text-white">
         <div className="text-3xl font-bold underline text-center rounded p-1 ">
-          Insurance Form
+          Soil Form
         </div>
-        <label className="p-1">Enter Insurance Name</label>
+        <label className="p-1">Enter Soil Name</label>
         <input
           className="rounded-lg text-black p-1 "
           type="text"
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
-        <label className="p-1">Enter Description of Insurance</label>
+        <label className="p-1">Enter Soil Moisture</label>
         <input
           className="rounded-lg text-black p-1 "
           type="text"
-          onChange={(e) => setDesc(e.target.value)}
-          value={desc}
+          onChange={(e) => setMoisture(e.target.value)}
+          value={moisture}
         />
-        <label className="p-1">Enter Insurance Type</label>
+        <label className="p-1">Enter Soil Type</label>
         <input
           className="rounded-lg text-black p-1"
           type="text"
