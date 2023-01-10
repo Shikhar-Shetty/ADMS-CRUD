@@ -3,19 +3,16 @@ import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
-const Customer = db.define(
-  "Customer",
+const Soil = db.define(
+  "Soil",
   {
+    type: {
+      type: DataTypes.STRING,
+    },
+    moisture: {
+      type: DataTypes.STRING,
+    },
     name: {
-      type: DataTypes.STRING,
-    },
-    address: {
-      type: DataTypes.STRING,
-    },
-    mobileNo: {
-      type: DataTypes.STRING,
-    },
-    emailAddress: {
       type: DataTypes.STRING,
     },
   },
@@ -23,4 +20,4 @@ const Customer = db.define(
     freezeTableName: true,
   }
 );
-export default Customer;
+export default Soil;

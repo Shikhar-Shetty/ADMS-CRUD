@@ -3,22 +3,16 @@ import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
-const InsuranceCompany = db.define(
-  "InsuranceCompany",
+const Temperature = db.define(
+  "Temperature",
   {
+    startTemperature: {
+      type: DataTypes.STRING,
+    },
+    endTemperature: {
+      type: DataTypes.STRING,
+    },
     name: {
-      type: DataTypes.STRING,
-    },
-    address: {
-      type: DataTypes.STRING,
-    },
-    mobileNo: {
-      type: DataTypes.STRING,
-    },
-    emailAddress: {
-      type: DataTypes.STRING,
-    },
-    netWorth: {
       type: DataTypes.STRING,
     },
   },
@@ -26,4 +20,4 @@ const InsuranceCompany = db.define(
     freezeTableName: true,
   }
 );
-export default InsuranceCompany;
+export default Temperature;

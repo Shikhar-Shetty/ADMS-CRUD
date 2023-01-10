@@ -3,13 +3,19 @@ import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
-const InsurancesProvided = db.define(
-  "InsurancesProvided",
+const CropRequirements = db.define(
+  "CropRequirements",
   {
-    companyId: {
+    cropId: {
       type: DataTypes.INTEGER,
     },
-    insuranceId: {
+    soilId: {
+      type: DataTypes.INTEGER,
+    },
+    rainfallId: {
+      type: DataTypes.INTEGER,
+    },
+    temperatureId: {
       type: DataTypes.INTEGER,
     },
   },
@@ -17,4 +23,4 @@ const InsurancesProvided = db.define(
     freezeTableName: true,
   }
 );
-export default InsurancesProvided;
+export default CropRequirements;
