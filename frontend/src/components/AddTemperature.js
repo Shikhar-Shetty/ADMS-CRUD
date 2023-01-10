@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function AddCompany(props) {
+export default function AddTemperature(props) {
   const [name, setName] = useState("");
-  const [addr, setAddr] = useState("");
-  const [mob, setMob] = useState("");
-  const [ema, setEma] = useState("");
-  const [net, setNet] = useState("");
+  const [startTemperature, setStartTemperature] = useState("");
+  const [endTemperature, setEndTemperature] = useState("");
 
   useEffect(() => {
     loadUpdate();
@@ -15,31 +13,28 @@ export default function AddCompany(props) {
   const loadUpdate = () => {
     if (props.update != {}) {
       setName(props.update.name);
-      setMob(props.update.mobileNo);
-      setAddr(props.update.address);
-      setEma(props.update.emailAddress);
-      setNet(props.update.netWorth);
+      setStartTemperature(props.update.startTemperature);
+      setEndTemperature(props.update.endTemperature);
     }
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (props.update.id == null) {
-      await axios.post("http://localhost:5000/company", {
+      await axios.post("http://localhost:5000/temperature", {
         name: name,
-        address: addr,
-        mobileNo: mob,
-        emailAddress: ema,
-        netWorth: net,
+        startTemperature: startTemperature,
+        endTemperature: endTemperature,
       });
     } else {
-      await axios.patch(`http://localhost:5000/company/${props.update.id}`, {
-        name: name,
-        address: addr,
-        mobileNo: mob,
-        emailAddress: ema,
-        netWorth: net,
-      });
+      await axios.patch(
+        `http://localhost:5000/temperature/${props.update.id}`,
+        {
+          name: name,
+          startTemperature: startTemperature,
+          endTemperature: endTemperature,
+        }
+      );
     }
     props.setUpdate({});
     resetHandler();
@@ -49,52 +44,36 @@ export default function AddCompany(props) {
 
   const resetHandler = () => {
     setName("");
-    setAddr("");
-    setEma("");
-    setMob("");
-    setNet("");
+    setStartTemperature("");
+    setEndTemperature("");
   };
 
   return (
     <form className="w-1/2 flex" onSubmit={(e) => submitHandler(e)}>
       <div className="bg-blue-900 flex flex-col my-auto w-full rounded p-2 text-white">
         <div className="text-3xl font-bold underline text-center rounded p-1 ">
-          Insurance Company Form
+          Temperature Form
         </div>
-        <label className="p-1">Enter Company Name</label>
+        <label className="p-1">Enter Temperature Name</label>
         <input
           className="rounded-lg text-black p-1"
           type="text"
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
-        <label className="p-1">Enter Address</label>
+        <label className="p-1">Enter Start Temperature</label>
         <input
           className="rounded-lg text-black p-1"
           type="text"
-          onChange={(e) => setAddr(e.target.value)}
-          value={addr}
+          onChange={(e) => setStartTemperature(e.target.value)}
+          value={startTemperature}
         />
-        <label className="p-1">Enter Mobile Number</label>
+        <label className="p-1">Enter End Temperature</label>
         <input
           className="rounded-lg text-black p-1"
           type="text"
-          onChange={(e) => setMob(e.target.value)}
-          value={mob}
-        />
-        <label className="p-1">Enter Email Address</label>
-        <input
-          className="rounded-lg text-black p-1"
-          type="text"
-          onChange={(e) => setEma(e.target.value)}
-          value={ema}
-        />
-        <label className="p-1">Enter Net Worth</label>
-        <input
-          className="rounded-lg text-black p-1"
-          type="text"
-          onChange={(e) => setNet(e.target.value)}
-          value={net}
+          onChange={(e) => setEndTemperature(e.target.value)}
+          value={endTemperature}
         />
         <div className="flex flex-row p-1 mt-2 justify-center">
           <button type="submit" className="bg-green-900 w-1/3 p-1 rounded mr-1">

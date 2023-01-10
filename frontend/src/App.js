@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import AddCompany from "./components/AddCompany";
-import AddCustomer from "./components/AddCustomer";
-import AddInsurance from "./components/AddInsurance";
-import AddProvided from "./components/AddProvided";
-import AddTaken from "./components/AddTaken";
+import AddCompany from "./components/AddTemperature";
+import AddCustomer from "./components/AddRainfall";
+import AddInsurance from "./components/AddSoil";
+import AddProvided from "./components/AddCrop";
+import AddTaken from "./components/AddCropRequirements";
 import Buttons from "./components/Buttons";
 import Table from "./components/Table";
 import axios from "axios";
