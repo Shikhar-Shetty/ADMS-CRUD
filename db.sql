@@ -1,58 +1,57 @@
-CREATE DATABASE insurancedb;
+CREATE DATABASE agritechnodb;
 
-CREATE TABLE Insurance(
+CREATE TABLE Temperature(
     id INT(11) AUTO_INCREMENT,
     name VARCHAR(50),
-    description VARCHAR(50),
-    insuranceType VARCHAR(50),
+    startTemperature VARCHAR(50),
+    endTemperature VARCHAR(50),
     createdAt DATE,
     updatedAt DATE,
     PRIMARY KEY(id)
 )ENGINE=INNODB; 
 
-CREATE TABLE InsuranceCompany(
+CREATE TABLE Rainfall(
     id INT(11) AUTO_INCREMENT,
     name VARCHAR(50),
-    address VARCHAR(50),
-    mobileNo VARCHAR(50),
-    emailAddress VARCHAR(50),
-    netWorth VARCHAR(50),
+    density VARCHAR(50),
     createdAt DATE,
     updatedAt DATE,
     PRIMARY KEY(id)
 )ENGINE=INNODB; 
 
-CREATE TABLE Customer(
+CREATE TABLE Soil(
     id INT(11) AUTO_INCREMENT,
     name VARCHAR(50),
-    address VARCHAR(50),
-    mobileNo VARCHAR(50),
-    emailAddress VARCHAR(50),
+    type VARCHAR(50),
+    moisture VARCHAR(50),
     createdAt DATE,
     updatedAt DATE,
     PRIMARY KEY(id)
 )ENGINE=INNODB; 
 
-CREATE TABLE InsurancesTaken(
+CREATE TABLE Crop(
     id INT(11) AUTO_INCREMENT,
-    customerId INT(11),
-    insuranceId INT(11),
-    termTaken INT(11),
-    pricePerMonth INT(11),
+    name VARCHAR(50),
+    type VARCHAR(50),
+    timeTaken INT(11),
+    price INT(11),
     createdAt DATE,
     updatedAt DATE,
-    PRIMARY KEY(id),
-    FOREIGN KEY(customerId) REFERENCES Customer(id) on delete cascade,
-    FOREIGN KEY(insuranceId) REFERENCES Insurance(id) on delete cascade
+    PRIMARY KEY(id)
+)ENGINE=INNODB; 
+
+CREATE TABLE CropRequirements(
+    id INT(11) UNIQUE AUTO_INCREMENT,
+    cropId INT(11),
+    soilId INT(11),
+    rainfallId INT(11),
+    temperatureId INT(11),
+    createdAt DATE,
+    updatedAt DATE,
+    PRIMARY KEY(cropId,soilId,rainfallId,temperatureId),
+    FOREIGN KEY(cropId) REFERENCES Crop(id) ,
+    FOREIGN KEY(soilId) REFERENCES Soil(id) ,
+    FOREIGN KEY(rainfallId) REFERENCES Rainfall(id) ,
+    FOREIGN KEY(temperatureId) REFERENCES Temperature(id)
 )ENGINE=INNODB; 
  
-CREATE TABLE InsurancesProvided(
-    id INT(11) AUTO_INCREMENT,
-    companyId INT(11),
-    insuranceId INT(11),
-    createdAt DATE,
-    updatedAt DATE,
-    PRIMARY KEY(id),
-    FOREIGN KEY(companyId) REFERENCES InsuranceCompany(id) on delete cascade,
-    FOREIGN KEY(insuranceId) REFERENCES Insurance(id) on delete cascade
-)ENGINE=INNODB; 
