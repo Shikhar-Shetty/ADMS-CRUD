@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function AddTaken(props) {
+export default function AddCropRequirements(props) {
   const [cropId, setCropId] = useState("");
   const [soilId, setSoilId] = useState("");
   const [rainfallId, setRainfallId] = useState("");
@@ -27,8 +27,8 @@ export default function AddTaken(props) {
       await axios.post("http://localhost:5000/croprequirements", {
         cropId: cropId,
         soilId: soilId,
-        rainfallIdTaken: rainfallId,
-        temperatureIdPerMonth: temperatureId,
+        rainfallId: rainfallId,
+        temperatureId: temperatureId,
       });
     } else {
       await axios.patch(
@@ -36,8 +36,8 @@ export default function AddTaken(props) {
         {
           cropId: cropId,
           soilId: soilId,
-          rainfallIdTaken: rainfallId,
-          temperatureIdPerMonth: temperatureId,
+          rainfallId: rainfallId,
+          temperatureId: temperatureId,
         }
       );
     }

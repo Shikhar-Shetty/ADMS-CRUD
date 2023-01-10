@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-me;
+
 export default function AddCrop(props) {
   const [timeTaken, setTimeTaken] = useState("");
   const [price, setPrice] = useState("");

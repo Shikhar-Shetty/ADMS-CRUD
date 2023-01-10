@@ -48,10 +48,10 @@ CREATE TABLE CropRequirements(
     temperatureId INT(11),
     createdAt DATE,
     updatedAt DATE,
-    PRIMARY KEY(cropId,soilId,rainfallId,temperatureId),
-    FOREIGN KEY(cropId) REFERENCES Crop(id) ,
-    FOREIGN KEY(soilId) REFERENCES Soil(id) ,
-    FOREIGN KEY(rainfallId) REFERENCES Rainfall(id) ,
-    FOREIGN KEY(temperatureId) REFERENCES Temperature(id)
+    PRIMARY KEY(cropId,soilId,rainfallId,temperatureId) ,
+    FOREIGN KEY(cropId) REFERENCES Crop(id)  on delete cascade,
+    FOREIGN KEY(soilId) REFERENCES Soil(id)  on delete cascade,
+    FOREIGN KEY(rainfallId) REFERENCES Rainfall(id)  on delete cascade,
+    FOREIGN KEY(temperatureId) REFERENCES Temperature(id)  on delete cascade
 )ENGINE=INNODB; 
  

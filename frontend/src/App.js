@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import AddCompany from "./components/AddTemperature";
-import AddCustomer from "./components/AddRainfall";
-import AddInsurance from "./components/AddSoil";
-import AddProvided from "./components/AddCrop";
-import AddTaken from "./components/AddCropRequirements";
 import Buttons from "./components/Buttons";
 import Table from "./components/Table";
 import axios from "axios";
+import AddTemperature from "./components/AddTemperature";
+import AddRainfall from "./components/AddRainfall";
+import AddSoil from "./components/AddSoil";
+import AddCrop from "./components/AddCrop";
+import AddCropRequirements from "./components/AddCropRequirements";
 
 function App() {
   const [func, setFunc] = useState(0);
@@ -30,7 +30,7 @@ function App() {
   };
 
   const tableKeys = {
-    temperature: ["id", "name", "startTemp", "endTemp"],
+    temperature: ["id", "name", "startTemperature", "endTemperature"],
     rainfall: ["id", "name", "density"],
     soil: ["id", "name", "moisture", "type"],
     crop: ["id", "name", "type", "timeTaken", "price"],
@@ -84,7 +84,7 @@ function App() {
     switch (url) {
       case "temperature":
         return (
-          <AddInsurance
+          <AddTemperature
             getData={() => getData(url)}
             setFunc={setFunc}
             update={update}
@@ -94,7 +94,7 @@ function App() {
 
       case "rainfall":
         return (
-          <AddCustomer
+          <AddRainfall
             getData={() => getData(url)}
             setFunc={setFunc}
             update={update}
@@ -104,7 +104,7 @@ function App() {
 
       case "soil":
         return (
-          <AddCompany
+          <AddSoil
             getData={() => getData(url)}
             setFunc={setFunc}
             update={update}
@@ -114,7 +114,7 @@ function App() {
 
       case "crop":
         return (
-          <AddProvided
+          <AddCrop
             getData={() => getData(url)}
             setFunc={setFunc}
             update={update}
@@ -124,7 +124,7 @@ function App() {
 
       case "cropRequirements":
         return (
-          <AddTaken
+          <AddCropRequirements
             getData={() => getData(url)}
             setFunc={setFunc}
             update={update}
