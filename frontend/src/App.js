@@ -17,45 +17,38 @@ function App() {
   const [data, setData] = useState([]);
 
   const tableHeaders = {
-    insurance: [
-      "Insurance Id",
-      "Insurance Name",
-      "Description",
-      "Insurance Type",
-    ],
-    customer: ["Customer Id", "Name", "Address", "Mobile No", "Email"],
-    company: [
-      "Company Id",
+    temperature: [
+      "Temperature Id",
       "Name",
-      "Address",
-      "Mobile No",
-      "Email",
-      "Net Worth",
+      "Start Temperature",
+      "End Temperature",
     ],
-    provided: ["Company Id", "Insurance Id"],
-    taken: ["Customer Id", "Insurance Id", "Term Taken", "Price Per Month"],
+    rainfall: ["Rainfall Id", "Name", "Density"],
+    soil: ["Soil Id", "Name", "Soil Moisture", "Soil Type"],
+    crop: ["Crop Id", "Name", "Crop Type", "Time Taken", "Price"],
+    cropRequirements: ["Crop Id", "Soil Id", "Rainfall Id", "Temperature Id"],
   };
 
   const tableKeys = {
-    insurance: ["id", "name", "description", "insuranceType"],
-    customer: ["id", "name", "address", "mobileNo", "emailAddress"],
-    company: ["id", "name", "address", "mobileNo", "emailAddress", "netWorth"],
-    provided: ["companyId", "insuranceId"],
-    taken: ["customerId", "insuranceId", "termTaken", "pricePerMonth"],
+    temperature: ["id", "name", "startTemp", "endTemp"],
+    rainfall: ["id", "name", "density"],
+    soil: ["id", "name", "moisture", "type"],
+    crop: ["id", "name", "type", "timeTaken", "price"],
+    cropRequirements: ["cropId", "soilId", "rainfallId", "temperatureId"],
   };
 
   const navs = {
-    insurance: "Insurance",
-    customer: "Customer",
-    company: "Company",
-    provided: "Insurances Provided By Companies",
-    taken: "Insurances Taken By Customers",
+    temperature: "Temperature",
+    rainfall: "Rainfall",
+    soil: "Soil",
+    crop: "Crop",
+    cropRequirements: "Crop Requirements",
   };
 
-  const urls = ["insurance", "customer", "company", "provided", "taken"];
+  const urls = ["temperature", "rainfall", "soil", "crop", "cropRequirements"];
 
   useEffect(() => {
-    getData("insurance");
+    getData("temperature");
   }, []);
 
   const updateHandler = (data) => {
@@ -89,7 +82,7 @@ function App() {
       );
     }
     switch (url) {
-      case "insurance":
+      case "temperature":
         return (
           <AddInsurance
             getData={() => getData(url)}
@@ -99,7 +92,7 @@ function App() {
           />
         );
 
-      case "customer":
+      case "rainfall":
         return (
           <AddCustomer
             getData={() => getData(url)}
@@ -109,7 +102,7 @@ function App() {
           />
         );
 
-      case "company":
+      case "soil":
         return (
           <AddCompany
             getData={() => getData(url)}
@@ -119,7 +112,7 @@ function App() {
           />
         );
 
-      case "provided":
+      case "crop":
         return (
           <AddProvided
             getData={() => getData(url)}
@@ -129,7 +122,7 @@ function App() {
           />
         );
 
-      case "taken":
+      case "cropRequirements":
         return (
           <AddTaken
             getData={() => getData(url)}
@@ -157,7 +150,7 @@ function App() {
       >
         <div className=" text-xl ml-1 mr-auto">
           <button onClick={() => setUrl("")}>
-            Insurance Management System
+            AgriTechno Management System
           </button>
         </div>
         {urls.map((item, index) => (
@@ -189,7 +182,7 @@ function App() {
           <div className=" text-9xl font-bold">
             Welcome
             <div className="text-5xl font-extralight">
-              Insurance Management System
+              AgriTechno Management System
             </div>
           </div>
           <div className="absolute right-10 bottom-10 bg-blue-900 rounded p-2">
@@ -198,12 +191,12 @@ function App() {
             </div>
             <table className=" text-left text-white text-xl">
               <tr>
-                <td className="pl-5">Isha Sheikh Bashir </td>
-                <td className="pl-5">4JK20CS018</td>
+                <td className="pl-5">Vaishnavi </td>
+                <td className="pl-5">4JK20IS000</td>
               </tr>
               <tr>
-                <td className="pl-5">Anvitha </td>
-                <td className="pl-5">4JK20CS009</td>
+                <td className="pl-5">Disha </td>
+                <td className="pl-5">4JK20IS000</td>
               </tr>
             </table>
           </div>
