@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-export default function AddProvided(props) {
-  const [companyId, setCompanyId] = useState("");
-  const [insuranceId, setInsuranceId] = useState("");
+me;
+export default function AddCrop(props) {
+  const [timeTaken, setTimeTaken] = useState("");
+  const [price, setPrice] = useState("");
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
 
   useEffect(() => {
     loadUpdate();
@@ -11,22 +13,28 @@ export default function AddProvided(props) {
 
   const loadUpdate = () => {
     if (props.update != {}) {
-      setCompanyId(props.update.companyId);
-      setInsuranceId(props.update.insuranceId);
+      setTimeTaken(props.update.timeTaken);
+      setPrice(props.update.price);
+      setName(props.update.name);
+      setType(props.update.type);
     }
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (props.update.id == null) {
-      await axios.post("http://localhost:5000/provided", {
-        companyId: companyId,
-        insuranceId: insuranceId,
+      await axios.post("http://localhost:5000/crop", {
+        timeTaken: timeTaken,
+        price: price,
+        name: name,
+        type: type,
       });
     } else {
-      await axios.patch(`http://localhost:5000/provided/${props.update.id}`, {
-        companyId: companyId,
-        insuranceId: insuranceId,
+      await axios.patch(`http://localhost:5000/crop/${props.update.id}`, {
+        timeTaken: timeTaken,
+        price: price,
+        name: name,
+        type: type,
       });
     }
     props.setUpdate({});
@@ -36,29 +44,45 @@ export default function AddProvided(props) {
   };
 
   const resetHandler = () => {
-    setCompanyId("");
-    setInsuranceId("");
+    setTimeTaken("");
+    setPrice("");
+    setName("");
+    setType("");
   };
 
   return (
     <form className="w-1/2 flex" onSubmit={(e) => submitHandler(e)}>
       <div className="bg-blue-900 flex flex-col my-auto w-full rounded p-2 text-white">
         <div className="text-3xl font-bold underline text-center rounded p-1 ">
-          Insurances Provided By Companies Form
+          Crop Form
         </div>
-        <label className="p-1">Enter Company Id</label>
+        <label className="p-1">Enter Crop Name</label>
         <input
           className="rounded-lg text-black p-1"
-          type="number"
-          onChange={(e) => setCompanyId(e.target.value)}
-          value={companyId}
+          type="text"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
         />
-        <label className="p-1">Enter Insurance id</label>
+        <label className="p-1">Enter Crop Type</label>
+        <input
+          className="rounded-lg text-black p-1"
+          type="text"
+          onChange={(e) => setType(e.target.value)}
+          value={type}
+        />
+        <label className="p-1">Enter Time Taken for Crop</label>
         <input
           className="rounded-lg text-black p-1"
           type="number"
-          onChange={(e) => setInsuranceId(e.target.value)}
-          value={insuranceId}
+          onChange={(e) => setTimeTaken(e.target.value)}
+          value={timeTaken}
+        />
+        <label className="p-1">Enter Price</label>
+        <input
+          className="rounded-lg text-black p-1"
+          type="number"
+          onChange={(e) => setPrice(e.target.value)}
+          value={price}
         />
         <div className="flex flex-row p-1 mt-2 justify-center">
           <button type="submit" className="bg-green-900 w-1/3 p-1 rounded mr-1">
