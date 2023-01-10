@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function AddTaken(props) {
-  const [customerId, setCustomerId] = useState("");
-  const [insuranceId, setInsuranceId] = useState("");
-  const [term, setTerm] = useState("");
-  const [price, setPrice] = useState("");
+  const [cropId, setCropId] = useState("");
+  const [soilId, setSoilId] = useState("");
+  const [rainfallId, setRainfallId] = useState("");
+  const [temperatureId, setTemperatureId] = useState("");
 
   useEffect(() => {
     loadUpdate();
@@ -13,10 +13,10 @@ export default function AddTaken(props) {
 
   const loadUpdate = () => {
     if (props.update != {}) {
-      setCustomerId(props.update.customerId);
-      setInsuranceId(props.update.insuranceId);
-      setTerm(props.update.termTaken);
-      setPrice(props.update.pricePerMonth);
+      setCropId(props.update.cropId);
+      setSoilId(props.update.soilId);
+      setRainfallId(props.update.rainfallId);
+      setTemperatureId(props.update.temperatureId);
     }
   };
 
@@ -24,19 +24,22 @@ export default function AddTaken(props) {
     e.preventDefault();
 
     if (props.update.id == null) {
-      await axios.post("http://localhost:5000/taken", {
-        customerId: customerId,
-        insuranceId: insuranceId,
-        termTaken: term,
-        pricePerMonth: price,
+      await axios.post("http://localhost:5000/croprequirements", {
+        cropId: cropId,
+        soilId: soilId,
+        rainfallIdTaken: rainfallId,
+        temperatureIdPerMonth: temperatureId,
       });
     } else {
-      await axios.patch(`http://localhost:5000/taken/${props.update.id}`, {
-        customerId: customerId,
-        insuranceId: insuranceId,
-        termTaken: term,
-        pricePerMonth: price,
-      });
+      await axios.patch(
+        `http://localhost:5000/croprequirements/${props.update.id}`,
+        {
+          cropId: cropId,
+          soilId: soilId,
+          rainfallIdTaken: rainfallId,
+          temperatureIdPerMonth: temperatureId,
+        }
+      );
     }
     props.setUpdate({});
     resetHandler();
@@ -45,45 +48,45 @@ export default function AddTaken(props) {
   };
 
   const resetHandler = () => {
-    setCustomerId("");
-    setInsuranceId("");
-    setTerm("");
-    setPrice("");
+    setCropId("");
+    setSoilId("");
+    setRainfallId("");
+    setTemperatureId("");
   };
 
   return (
     <form className="w-1/2 flex" onSubmit={(e) => submitHandler(e)}>
       <div className="bg-blue-900 flex flex-col my-auto w-full rounded p-2 text-white">
         <div className="text-3xl font-bold underline text-center rounded p-1 ">
-          Insurances Taken By Customers Form
+          Crop Requirements Form
         </div>
-        <label className="p-1">Enter Customer Id</label>
+        <label className="p-1">Enter Crop Id</label>
         <input
           className="rounded-lg text-black p-1"
           type="number"
-          onChange={(e) => setCustomerId(e.target.value)}
-          value={customerId}
+          onChange={(e) => setCropId(e.target.value)}
+          value={cropId}
         />
-        <label className="p-1">Enter Insurance id</label>
+        <label className="p-1">Enter Soil id</label>
         <input
           className="rounded-lg text-black p-1"
           type="number"
-          onChange={(e) => setInsuranceId(e.target.value)}
-          value={insuranceId}
+          onChange={(e) => setSoilId(e.target.value)}
+          value={soilId}
         />
-        <label className="p-1">Enter Term</label>
+        <label className="p-1">Enter Rainfall Id</label>
         <input
           className="rounded-lg text-black p-1"
           type="number"
-          onChange={(e) => setTerm(e.target.value)}
-          value={term}
+          onChange={(e) => setRainfallId(e.target.value)}
+          value={rainfallId}
         />
-        <label className="p-1">Enter Price Per Month</label>
+        <label className="p-1">Enter Temperature Id </label>
         <input
           className="rounded-lg text-black p-1"
           type="number"
-          onChange={(e) => setPrice(e.target.value)}
-          value={price}
+          onChange={(e) => setTemperatureId(e.target.value)}
+          value={temperatureId}
         />
         <div className="flex flex-row p-1 mt-2 justify-center">
           <button type="submit" className="bg-green-900 w-1/3 p-1 rounded mr-1">
