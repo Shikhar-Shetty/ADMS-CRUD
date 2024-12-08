@@ -7,6 +7,7 @@ import AddRainfall from "./components/AddRainfall";
 import AddSoil from "./components/AddSoil";
 import AddCrop from "./components/AddCrop";
 import AddCropRequirements from "./components/AddCropRequirements";
+import image1 from "./images/Farmer.png"
 
 function App() {
   const [func, setFunc] = useState(0);
@@ -143,31 +144,31 @@ function App() {
   };
 
   return (
-    <div className=" bg-blue-300 w-screen h-screen">
+    <div className=" bg-yellow-400 text-black w-screen h-screen">
       <div
-        className="bg-blue-900 text-white flex flex-row p-2"
+        className="bg-white text-black uppercase flex font-sans flex-row p-3 my-5"
         style={{ height: "7vh" }}
       >
-        <div className=" text-xl ml-1 mr-auto">
+        <div className="text-left font-bold uppercase text- ml-1 mr-auto text-black rounded-full  pl-5 pr-5 pt-1  leading-tight mt-[-0.5rem] ">
           <button onClick={() => setUrl("")}>
-            AgriTechno Management System
+            AGRITECHNO <br/> MANAGEMENT SYSTEM <span className="text-yellow-500 font-bold">.</span>
           </button>
-        </div>
+        </div> 
         {urls.map((item, index) => (
-          <div className="ml-3 py-1">
+          <div className="ml-3 mx-3 py-1 my-2.5 rounded-full border font-mono text-center border-solid border-black px-6 hover:bg-black hover:text-white">
             <button onClick={() => navClickHandler(index)}>{navs[item]}</button>
           </div>
         ))}
       </div>
       {url != "" && (
-        <div className="w-full bg-blue-500" style={{ height: "93vh" }}>
+        <div className="w-full bg-white mt-[-1.15rem]" style={{ height: "93vh" }}>
           <Buttons
             setFunc={setFunc}
             title={navs[url]}
             style={{ height: "8vh" }}
           />
           <div
-            style={{ height: "85vh" }}
+            style={{ height: "86vh" }}
             className={"w-full justify-center" + (func == 2 ? " flex" : " ")}
           >
             {getContent()}
@@ -176,29 +177,17 @@ function App() {
       )}
       {url == "" && (
         <div
-          className="w-full bg-blue-500 flex flex-col justify-center text-center"
-          style={{ height: "93vh" }}
+          className="w-full bg-white flex flex-row justify-center items-center text-center mt-[-1.15rem]"
+          style={{ height: "92.5vh" }}
         >
-          <div className=" text-9xl font-bold">
+          <div className=" text-9xl text-left font-bold items-center " style={{animation: "ping 1s ease-in 1"}}>
             Welcome
-            <div className="text-5xl font-extralight">
-              AgriTechno Management System
+            <div className="text-6xl font-extralight font-sans">
+              AgriTechno<br/> <span className="text-yellow-500">Management System</span> 
             </div>
           </div>
-          <div className="absolute right-10 bottom-10 bg-blue-900 rounded p-2">
-            <div className=" text-left font-bold text-2xl underline">
-              Project By,{" "}
-            </div>
-            <table className=" text-left text-white text-xl">
-              <tr>
-                <td className="pl-5">Vaishnavi </td>
-                <td className="pl-5">4JK20IS000</td>
-              </tr>
-              <tr>
-                <td className="pl-5">Disha </td>
-                <td className="pl-5">4JK20IS000</td>
-              </tr>
-            </table>
+          <div className="w-80">
+            <img src={image1} alt="Not-Found" />
           </div>
         </div>
       )}

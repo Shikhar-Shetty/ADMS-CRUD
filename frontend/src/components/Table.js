@@ -3,22 +3,22 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 export default function Table(props) {
   return (
     <>
-      <div className="w-full text-center text-3xl font-bold underline rounded p-1">
+      <div className="w-full text-center text-3xl font-bold uppercase font-mono rounded p-1">
         {props.title + " List"}
       </div>
-      <table className="w-full text-center border-separate text-sm pt-1 px-5">
-        <tr className="bg-blue-900">
+      <table className="w-full text-center border-separate text-sm pt-1 px-5 ">
+        <tr className="bg-yellow-500 text-white">
           {props.headers.map((header) => (
-            <th className="p-1">{header}</th>
+            <th className="p-3">{header}</th>
           ))}
           {props.func == 1 && <th className="p-1">Update/Delete</th>}
         </tr>
         {props.rows != null &&
           props.rows.map((row) => {
             return (
-              <tr className="bg-blue-200">
+              <tr className="bg-yellow-300">
                 {props.keys.map((key) => (
-                  <td className="p-1">{row[key] + ""}</td>
+                  <td className="p-2">{row[key] + ""}</td>
                 ))}
                 {props.func == 1 && (
                   <td>
